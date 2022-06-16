@@ -1,6 +1,7 @@
 El Bitmap Display utiliza un espacio reservado de memoria para leer palabras
 que representaran los colores en cada byte. Estos colores se leeran de manera
-secuencial.
+secuencial directamente de la memoria y se mostraran en pantalla una vez se
+halla conectado el Bitmap Display al programa.
 
 El espacio reservado puede comenzar en:
 - 0x10000000 (global data)

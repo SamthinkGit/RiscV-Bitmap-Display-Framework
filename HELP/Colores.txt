@@ -1,0 +1,41 @@
+Los colores en el bitmap Display se representan mediante una combinación
+RGB. Si suponemos una palabra 0xAABBCCDD, las letras BB modifican la
+cantidad de Rojo, lo mismo con las letras CC para el verde y DD para el
+azul. Las letras AA no modifican nada. Así pues con guardar el color 
+deseado en el pixel que deseemos como se explica en "Espacios de Memoria",
+podremos visualizar el color configurado.
+
+Algunas combinaciones de colores son las siguientes:
+
+0x0000FFFF: Cian 
+0x00FF00FF: Magenta 
+0x00FFFF00: Amarillo 
+0x000000FF: Azul 
+0x00FF0000: Rojo 
+0x00000000: Negro 
+0x00FFFFFF: Blanco 
+0x00CCCCCC: Gris Claro 
+0x00666666: Gris Medio 
+0x0099CCFF: Azul Claro 
+0x00CCFFFF: Cian Claro 
+0x00CC99FF: Magenta Claro 
+0x00FFFFCC: Amarillo Claro 
+0x00336699: Azul Medio 
+0x0033CCCC: Cian Medio 
+0x0099CCFF: Magenta Medio 
+0x00666699: Azul Oscuro 
+0x00006699: Azul Muy Oscuro 
+0x00339966: Cian Muy Oscuro 
+0x009900CC: Magenta Muy Oscuro 
+0x00663300: Marrón Muy Oscuro 
+0x00990000: Rojo Muy Oscuro 
+0x00CC6600: Naranja Oscuro 
+0x00FFCC33: Naranja Claro 
+0x00FF9900: Naranja Brillante
+
+Todas estas combinaciones vienen guardadas en Colors.s (Utils)
+
+Puedes crear más combinaciones desde el siguiente enlace:
+https://www.rapidtables.com/web/color/RGB_Color.html
+
+También puedes comprobar el ejemplo 2 (Multicolor_Fill)

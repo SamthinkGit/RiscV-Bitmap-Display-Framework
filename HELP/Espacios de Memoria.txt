@@ -1,0 +1,30 @@
+El Bitmap Display utiliza un espacio reservado de memoria para leer palabras
+que representaran los colores en cada byte. Estos colores se leeran de manera
+secuencial.
+
+El espacio reservado puede comenzar en:
+- 0x10000000 (global data)
+- 0x10008000 (gp)
+- 0x10010000 (static data)
+- 0x10040000 (heap)
+
+El comienzo de esta pantalla puede seleccionarse en los ajustes del Bitmap Display:
+/Tools/Bitmap Display/Base Adress for Display
+
+Junto a estos ajustes encontraras un menú en el que puedes seleccionar el ancho y
+el largo del display. Así pues en funcion de estos dos parámetros el display tendrá
+su última posicion en memoria en la direccion señalada en la siguiente tabla:
+
+	0		64		128		256		512		1024
+0	10010000	10010000	10010000	10010000	10010000	10010000
+64	10010000	10014000	10018000	10020000	10030000	10050000
+128	10010000	10018000	10020000	10030000	10050000	10090000
+256	10010000	10020000	10030000	10050000	10090000	10110000
+512	10010000	10030000	10050000	10090000	10110000	10210000
+1024	10010000	10050000	10090000	10110000	10210000	10410000
+
+Como muestra, el ejemplo número 1 (Screen_Fill) proporciona un programa que 
+rellena de color rojo una pantalla de 256x256, puedes jugar con SCREEN y
+FINAL_SCREEN, con los parámetros especificados arriba para ver como varian
+los resulatados.
+

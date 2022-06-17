@@ -1,0 +1,25 @@
+Para poder crear una línea en la pantalla del display distinguimos entre dos
+casos similares. El primer caso es el de una linea horizontal.
+
+Para crear una linea horizontal es necesario crear un bucle que:
+1. Recorre secuencialmente bytes en memoria
+2. Por cada byte que cambia, guarda el hexadecimal asociado al color
+   que deseamos
+3. Cuando se haya repetido este proceso n veces, el proceso termina.
+
+Esta funcion debe tener las siguientes consideraciones:
+
+- De pixel a pixel hay 1 palabra de 4 bytes
+- Debe existir un puntero inicial y uno final asociado a la posicion
+  en memoria del recorrido, o en su defecto, un contador (tener que sumar
+  en cada salto al sumador hace al programa ligeramente menos eficiente,
+  es mejor utilizar punteros)
+
+En el caso de la linea vertical el proceso es el mismo sin embargo hay que
+tener en cuenta que los saltos deben de ser del tamaño de la pantalla.
+Es decir si por ejemplo usamos una pantalla de 64 pixeles, cada salto entre
+pixel debe de ser de 64*4 bytes.
+
+Un ejemplo de esta implementación esta en el ejemplo 3 (Standart_Line)
+Se adjuntan tambien las funciones ya implementadas (H_LINE) y (V_LINE),
+mas información en sus comentarios.

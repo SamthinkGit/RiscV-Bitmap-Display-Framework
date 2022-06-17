@@ -24,6 +24,7 @@ su última posicion en memoria en la direccion señalada en la siguiente tabla:
 512	10010000	10030000	10050000	10090000	10110000	10210000
 1024	10010000	10050000	10090000	10110000	10210000	10410000
 
+
 Como muestra, el ejemplo número 1 (Screen_Fill) proporciona un programa que 
 rellena de color rojo una pantalla de 256x256, puedes jugar con SCREEN y
 FINAL_SCREEN, con los parámetros especificados arriba para ver como varian

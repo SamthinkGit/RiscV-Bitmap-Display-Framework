@@ -16,7 +16,7 @@
 _start:
 
 	li s0, CIAN_MEDIO       # Color Rojo
-	li s1, SCREEN		      # Direccion inicial
+	li s1, SCREEN		# Direccion inicial
 	li s2, FINAL_SCREEN    # Direccion final
 	
 bucle:

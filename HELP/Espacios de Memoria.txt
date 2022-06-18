@@ -30,3 +30,5 @@ rellena de color rojo una pantalla de 256x256, puedes jugar con SCREEN y
 FINAL_SCREEN, con los parámetros especificados arriba para ver como varian
 los resulatados.
 
+Nota: Recuerda que a veces es necesario ampliar la ventana del display para ver la 
+pantalla completa.

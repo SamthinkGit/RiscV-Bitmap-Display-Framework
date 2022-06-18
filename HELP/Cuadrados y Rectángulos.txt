@@ -1,0 +1,18 @@
+Es facil darse cuenta que si conseguimos una subrutina que muestre en el display 
+rectangulos, podemos tambien utilizarlo para crear cuadrados. Para conseguir esto
+hay que seguir los siguientes pasos:
+
+- Tomar una coordenada o puntero
+- Utilizar una subrutina que cree una linea
+- Cambiar de linea (Explicado en "Lineas y Punteros")
+- Repetir el proceso hasta que el puntero apunte a la última linea
+
+El proceso es siempre el mismo y se puede hacer con lineas verticales, sin embargo,
+es mucho más optimo realizarlo con horizontales (Revisar codigo de ambas subrutinas).
+
+Nota: Recuerda tener cuidado con los registros ra y sp, y la perdida de variables tras
+llamar a subrutinas.
+
+En Utils se adjunta un ejemplo que se puede utilzar para crear rectángulos introduciendo
+sus coordenadas, dimensiones y color. (Rectangles), recuerda que solo esta diseñado para
+funcionar en displays 512x512

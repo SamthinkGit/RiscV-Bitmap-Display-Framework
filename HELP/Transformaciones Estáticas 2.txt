@@ -1,0 +1,30 @@
+Otra transformación que podemos aplicar a una iamgen es tratar de desplazarla por el
+display. Para ello distinguieromos dos casos, movimientos horizontales y movimientos 
+verticales.
+
+Para realizar un movimiento horizontal debemos de tener en cuenta las siguientes 
+consideraciones:
+- Primero hay que imprimir de nuevo la imagen un pixel a la derecha/izquierda
+- Segundo es necesario imprimir una linea vertical que borre el sobrante de la anterior
+imagen
+- Se repite este proceso tantas veces como sea necesario.
+
+En cuanto al movimiento vertical:
+- Primero hay que imprimir de nuevo la imagen dando un salto de linea
+- Segundo es necesario imprimir una linea horizontal que borre el sobrante de la anterior
+imagen
+- Se repite este proceso tantas veces como sea necesario.
+
+Recuerda tener cuidado con las coordenadas que vayas a utilizar y los registros de las
+subrutinas que utilices
+
+Adicionalmente se adjunta la subrutina MOVE.s para realizar estas transformaciones, junto
+al ejemplo Static_Move.asm. Prueba a cambiar el color de "Creacion de Linea" para ver de una
+manera más visual el proceso de borrado de anteriores imagenes.
+
+Nota: Se ha utilizado el display 512x512 con puntero en 0x10040000. Y direcciones:
+- 0: Derecha
+- 1: Abajo
+- 2: Izquierda
+- 3: Arriba
+

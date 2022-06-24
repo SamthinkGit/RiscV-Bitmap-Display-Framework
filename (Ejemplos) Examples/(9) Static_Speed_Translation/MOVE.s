@@ -14,6 +14,7 @@
 		.globl MOVE
 		.eqv SIZE 512
 		.eqv DISPLAY 0x10040000
+		.eqv TRAIL_COLOR 0
 
 MOVE:
 		.text
@@ -53,7 +54,7 @@ derecha:
 	addi a0, a0, -4	# Correción de puntero
 	
 	mv a1,a2	 		# Distancia (Alto) -> a1
-	li a2, 0			# Color (Negro) -> a2
+	li a2, TRAIL_COLOR	# Color (Negro) -> a2
 	li a3, SIZE		# Display -> a3
 	jal V_LINE		# Haz una linea vertical negra a la izquierda
 	
@@ -85,7 +86,7 @@ izquierda:
 	jal Carga
 	lw a0, 24(sp)		# Puntero -> a0
 	mv a1,a2	 		# Distancia (Alto) -> a1
-	li a2, 0			# Color (Negro) -> a2
+	li a2, TRAIL_COLOR	# Color (Negro) -> a2
 	li a3, SIZE		# Display -> a3
 	jal V_LINE		# Haz una linea vertical negra a la izquierda
 	
@@ -116,7 +117,7 @@ arriba:
 	# Creacion de Linea Negra
 	jal Carga
 	lw a0, 24(sp)		# Puntero -> a0
-	li a2, 0			# Color (Negro) -> a2
+	li a2, TRAIL_COLOR	# Color (Negro) -> a2
 	jal H_LINE		# Haz una linea horizontal desde abajo
 	
 	# Impresion de nueva imagen
@@ -146,7 +147,7 @@ abajo:
 	# Creacion de Linea Negra
 	jal Carga
 	lw a0, 24(sp)		# Puntero -> a0
-	li a2, 0			# Color (Negro) -> a2
+	li a2, TRAIL_COLOR	# Color (Negro) -> a2
 	jal H_LINE		# Haz una linea horizontal desde arriba
 	
 	# Impresion de nueva imagen

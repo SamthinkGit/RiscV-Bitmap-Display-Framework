@@ -19,7 +19,7 @@ Recuerda tener cuidado con las coordenadas que vayas a utilizar y los registros 
 subrutinas que utilices
 
 Adicionalmente se adjunta la subrutina MOVE.s para realizar estas transformaciones, junto
-al ejemplo Static_Move.asm. Prueba a cambiar el color de "Creacion de Linea" para ver de una
+al ejemplo Static_Move.asm. Prueba a cambiar el color de "TRAIL_COLOR" para ver de una
 manera más visual el proceso de borrado de anteriores imagenes.
 
 Nota: Se ha utilizado el display 512x512 con puntero en 0x10040000. Y direcciones:

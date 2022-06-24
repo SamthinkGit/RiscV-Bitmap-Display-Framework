@@ -1,0 +1,24 @@
+Una vez sabemos imprimir una imagen ("Imágenes Estáticas") en el display, podemos
+determinar el tamaño que queremos que ocupe. Para conseguir esto utilizaremos una
+reescala simple, es decir solo podremos reescalar esta imagen a un múltiplo natural 
+(2,4,5...).
+
+Para realizar una reeascala simple tenemos que realizar una impresion normal teniendo
+en cuenta las siguientes consideraciones:
+
+Sea n el factor de reescala de la imagen.
+Sea s el ancho de pantalla (512 generalmente)
+
+- Cada pixel sera ahora un cuadrado nxn
+- Cada salto horizontal es ahora n*4 bytes
+- Cada salto vertical es ahora de n*s*4 bytes (menos el desplazamiento horizontal)
+
+Nota: Recuerda que estas realizando transformaciones estáticas, es decir, todas están
+determinadas en tiempo de compilación.
+
+Como material adicional se adjunta la subrutina de impresión y transformación 
+RESIZE_IMAGE.s y RESIZE_PIXEL (Utils) y el ejemplo de prueba Resized_image.asm.
+
+RESIZE_IMAGE: Subrutina que imprime en pantalla una imagen dada transformada
+RESIZE_PIXEL: Subrutina que imprime un cuadrado de tamaño nxn de un color determinado
+

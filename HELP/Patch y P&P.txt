@@ -56,6 +56,8 @@ consideraciones:
   especificados. Esto implica que, si la impresion original tiene un salto de linea, el ID
   tendrá su correspondiente salto de linea (teniendo en cuenta que uno salta en el display
   y otro salta en la memoria del ID, no son los mismos saltos)
+- Consideraremos como borde de imagen aquel pixel que no tiene fondo es decir, el pixel esta
+  a 0 antes del parche. Esto evitará parches por fuera del ID inestables
 
 Adicionalmente, se adjuntan los utiles PATCH.s y P&P_IMAGE.s en los utiles, asi como sus
 correspondientes ejemplos con los que puedes probar a cambiar parametros en el ejemplo 

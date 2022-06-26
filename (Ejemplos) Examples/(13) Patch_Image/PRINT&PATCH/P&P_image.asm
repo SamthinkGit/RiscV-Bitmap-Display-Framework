@@ -32,8 +32,8 @@ background:	.word
 	la a0, image2		# Imagen
 	li a1,20			# Ancho
 	li a2,20			# Alto
-	li a3,120			# Coordenada X
-	li a4,120			# Coordenada Y
+	li a3,155			# Coordenada X
+	li a4,130			# Coordenada Y
 	la a5, background	# Patch
 	jal PRINT_PATCH
 

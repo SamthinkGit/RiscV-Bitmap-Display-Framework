@@ -1,0 +1,84 @@
+Una vez hemos aprendido a realizar imagenes dinámicas, podemos conseguir las propiedades
+que necesitemos de esta imagen a traves de su ID. Es decir, aquel puntero en memoria
+en el que hemos guardado los datos de la imagen.
+
+Si deseamos realizar una transformacion a esta imagen deberemos tener en cuenta las
+siguientes consideraciones:
+
+- Las transformaciones ya no pediran datos de la imagen, les bastara con su ID
+- Si las propiedades de la imagen cambian, entonces la transformacion causante de dicho
+  cambio es la responsable de actualizar debidamente las propiedades en memoria.
+- Las transformaciones son generalmente conmutativas. Es decir  T(u*v) = 
+  T(u)*T(v) = T(v)*T(u), sin embargo esto no tiene por que aplicarse siempre.
+
+
+Existen multitud de transformaciones que se pueden aplicar a una imagen, desde algunas
+simples como rotaciones a otras más complejas como desenfocar una imagen.
+En este capitulo nos centraremos en 3 transformaciones dinámicas muy importantes: REMOVE,
+CUT y SHIFT.
+
+-------------------------------------- REMOVE ------------------------------------------
+
+REMOVE es una transformacion que pseudoelimina la imagen. No la elimina del todo por que
+seguira existiendo en memoria como objeto inteligente. Si queremos eliminarla del todo
+bastara con olvidar que ese espacio en memoria esta ocupado y dejarlo libre para ser
+sobreescrito.
+Así pues, la subrutina REMOVE debe convertir la imagen al color de borrado. En nuestro
+caso, el color de borrado será el Negro, debido a que así es el fondo del bitmap display.
+Igualmente, dicho color puede ser modificado a cualquier otro (en nuestro ejemplo,
+cambiando la constante REMOVE_COLOR).
+
+Para conseguir esto, la subrutina deberá:
+
+- Tomar la ID de la imagen
+- Obtener las propiedades de posicion de la imagen
+- Crear un Rectangulo de color REMOVE_COLOR en las coordenadas de la imagen
+
+Ten cuidado como siempre, con la posicion del DISPLAY, así como con los datos inestables
+debido a que al pedir las coordenadas, pedimos half-words.
+
+----------------------------------------- CUT -------------------------------------------
+
+Realmente CUT es una transformación variante del REMOVE. Pues realizará la misma accion 
+que tal pero ahora imprimira la imagen de nuevo en otras cordenadas. Dando la sensacion
+de que se ha copiado y pegado. Para conseguir esto la subrutina deberá:
+
+- Tomar la ID de la imagen
+- Realizar un REMOVE
+- Obtener el puntero a imagen (addi a0, a0, 16 # donde a0 = ID)
+- Imprimir la imagen en las nuevas coordenadas especificadas
+- Actualizar las propiedades de la imagen dinamica a sus nuevas coordenadas
+
+Ten cuidado con mezclar las coordenadas antes de realizar el corte con las de despues,
+pues no queremos que REMOVE borre la nueva imagen sino la antigua. 
+
+
+--------------------------------------- SHIFT ------------------------------------------
+SHIFT realiza un desplazamiento inteligente a la imagen, con una velocidad especificada.
+Realmente esta es la version dinámica de la transformación estática SPEED_MOVE o MOVE, 
+así pues, esta subrutina puede internamente hacer una llamada a MOVE o SPEED_MOVE con
+los datos de la nueva imagen dinámica. Otra idea puede ser realizar una transformación
+totalmente dinámica encadenando Desplazamientos de x pasos (en pixeles) con la transfor-
+mación REMOVE, sin embargo, el coste computacional de dichas transformacion aumenta al
+tratarse de transformaciones dinámicas (inteligentes).
+
+Con esto, la subrutina deberá:
+- Tomar la ID de la imagen y la direccion destino
+- Realizar un desplazamiento estático
+- Actualizar las propiedades de la imagen (Nuevas coordenadas)
+
+Ten cuidado que en función de la dirección que tome la imagen, las coordenadas finales
+mutarán de una manera u otra, y siempre hay que actualizarlas antes de devolver el ID.
+Igualmente, no hace falta que actualices cada una de las nuevas coordenadas, basta con
+que estimes en el inicio cual será la posicion final.
+
+--------------------------------------------------------------------------------------
+
+
+Si te fijas, realmente el esquema de las transformaciónes dinámicas es siempre el mismo:
+- Tomar la ID de imagen
+- Tomar las propiedades necesarias
+- Realizar la transformacion (estática o dinámica)
+- Actualizar las propiedades (Si es necesario)
+
+

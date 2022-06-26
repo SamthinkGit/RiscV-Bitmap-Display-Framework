@@ -1,0 +1,62 @@
+Una imagen puede conservar su bitmap una vez se ha convertido en inteligente, sin embargo
+esto solo ocurre en memoria. En el display, si aplicamos ciertas transformaciones o
+alteramos otros objetos superponiendolos sobre la imagen, parte de esa imagen se pierde.
+Por ejemplo, si movieramos un puntero por encima de una imagen, el puntero se conservaria
+pero la imagen de fondo se veria alterada por la transformacion que ocurre encima.
+
+Para solucionar esto podemos aplicar parches a la imagen.
+
+Un parche es un metodo que consiste en seleccionar un conjunto de pixeles que se presuponen
+en tiempo de compilacion que son vulnerables a ser alterados para volver a memoria y
+recuperar en el display una version recuperada. Para conseguir esto la subrutina PATCH,
+debe tener las siguientes consideraciones:
+
+- Acepta como argumentos un recinto delimitado por coordenadas en el display y una
+  imagen a recuperar.
+- Con la imagen inteligente buscara el bitmap en las propiedades y realizara una
+  impresion de la imagen en el recinto seleccionado.
+
+Hay que tener en cuenta, que la impresion debe coincidir con la imagen original, es decir
+para todo T(x) que no altere las proporciones de x, P(a) = P(T(a)) = a.
+
+Para conseguir esto podemos seguir los siguientes pasos.
+- Restar las coordenadas del recinto delimitado a las coordenadas donde comienza la imagen.
+  Esta diferencia será la cantidad de pixeles (en horizontal y vertical) que debe recorrer
+  el ID para encontrar el fragmento de imagen resultado.
+- Desplazar el ID dicha distancia.
+- Copiar los pixeles del ID en el display en horizontal hasta que se alcance el ancho 
+  delimitado por el recinto inicial
+- Realizar un salto de linea en el ID (Ancho*4bytes o [Ancho-Desfase_Realizado]*4bytes)
+- Realizar un salto de linea en el display
+- Repetir los ultimos 3 pasos hasta completar el parche.
+
+El P&P (Print & Patch) es una variante de los parches que se aplica a las impresiones de
+imagenes con colores alfa. La idea es conseguir crear pixeles que den la sensacion de
+ser trasparentes aplicando parches en la imagen que se esta superponiendo.
+
+Si las imagenes son estáticas, no existe diferencia entre el P&P y la partícula alfa, 
+sin embargo, cuando realizamos transformaciones dinámicas a estas imagenes, la partícula
+alfa no elimina los sobrantes de anteriores transformaciones, mientras que el P&P si
+las parchea.
+
+Por ejemplo, si pasamos un cursor por encima de una imagen, con la particula alfa, se
+dejará un rastro del cursor a medida que se mueve que perdera datos en el display de la
+imagen de fondo. Con el P&P, estos datos se parchean en el momento de imprimir el 
+movimiento del mismo cursor, no perdiendose así datos ni viendose estelas o los llamados
+'trails'.
+
+Para realizar el P&P se debe modificar IMAGE.s teniendo en cuenta las siguientes 
+consideraciones:
+
+- Si no detectamos la particula alfa (por defecto negro) entonces no se aplican parches
+- Si se detecta en algún pixel, entonces ese pixel sera parcheado con una imagen de fondo
+  cuyo ID estará incluido en los argumentos de la subrutina.
+- Por temas de eficiencia, a medida que avance la impresion; un puntero al posible color
+  de parche (es decir al ID) avanzará paralelamente, activandose solo en los casos ya
+  especificados. Esto implica que, si la impresion original tiene un salto de linea, el ID
+  tendrá su correspondiente salto de linea (teniendo en cuenta que uno salta en el display
+  y otro salta en la memoria del ID, no son los mismos saltos)
+
+Adicionalmente, se adjuntan los utiles PATCH.s y P&P_IMAGE.s en los utiles, asi como sus
+correspondientes ejemplos con los que puedes probar a cambiar parametros en el ejemplo 
+"Patch_Image"

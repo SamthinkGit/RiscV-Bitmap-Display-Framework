@@ -32,3 +32,6 @@ los resulatados.
 
 Nota: Recuerda que a veces es necesario ampliar la ventana del display para ver la 
 pantalla completa.
+
+Nota: Para calcular los valores de la tabla, basta con multiplicar:
+SCREEN*SCREEN*4 + DISPLAY

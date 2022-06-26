@@ -1,0 +1,26 @@
+Hasta ahora hemos tratado todas las imagenes como cuadrados y rectangulos. Sin embargo,
+la variedad de formas que pueden existir es infinita. Es por esto que programar un 
+sistema que comtemple cada tipo de forma de imagen es imposible. Para solucionar esto
+añadimos la particula alfa a la impresión de imagenes.
+
+Existen una gran variedad de maneras de aplicar la particula alfa a una impresión, sin
+embargo, aqui se utilizara la más simple: Alfa por restriccion. Escogeremos un color en
+tiempo de compilacion, y programaremos a la impresion de imagenes de manera que si
+encuentra ese color, no lo guarde en el display, dando la sensacion de que dicho pixel es
+trasparente.
+
+Este tipo de particula alfa solo tendrá dos estados, o es trasparente o no lo es. Esto
+no da permite del todo jugar con los colores trasparentes como una imagen PNG, sin embargo
+nos servira como introducción. Pues ten en cuenta que para añadir un gradiente de alfas
+es necesario un prototipo de mezcla de colores, lo que queda fuera del ámbito de estos
+contenidos.
+
+Para aplicar la particula alfa se tendrán en cuenta las siguientes consideraciones:
+
+- El color se denomimará como ALPHA_COLOR y por defecto sera el negro (0xff000000)
+- Para configurarlo, hay que modificar IMAGE.s de manera que comprobemos si el color
+  que se va a guardar coincide con ALPHA_COLOR y así saltar su guardado. (skip)
+- Desde fuera, los parámetros de IMAGE.s no deben verse modificados
+
+Como ayuda adicional se adjunta el ejemplo ALPHA_IMAGE.asm y el útil: ALPHA_IMAGE.s
+(IMAGE.s modificado)

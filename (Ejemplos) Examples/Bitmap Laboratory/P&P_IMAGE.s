@@ -7,10 +7,7 @@
 # a4: Coordenada y
 # a5: ID (background)
  
- 
- 		.eqv SIZE 512
- 		.eqv SCREEN 0x10040000
- 		.eqv PATCH_COLOR 0xff000000 # (Negro)
+ 		.include "Globals.s"
 		.globl PRINT_PATCH
 		
 PRINT_PATCH:
@@ -94,8 +91,9 @@ continue:
 		b bucle
 		
 patch:
-		lw t5, 0(t3)		# Comprueba que hay en el pixel del display
-		beq t5,zero,skip	# Si el pixel no tenia nada, entonces skipea
+		lw a7, 0(t3)		# Comprueba que hay en el pixel del display
+		beq a7,zero,skip	# Si el pixel no tenia nada, entonces skipea
+		
 		lw t5, 0(a5)		# Carga color de ID
 		sw t5, 0(t3)		# Guarda color en el pixel
 skip:		

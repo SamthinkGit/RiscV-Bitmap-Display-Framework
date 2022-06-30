@@ -94,8 +94,9 @@ continue:
 		b bucle
 		
 patch:
-		lw t5, 0(t3)		# Comprueba que hay en el pixel del display
-		beq t5,zero,skip	# Si el pixel no tenia nada, entonces skipea
+		lw a7, 0(t3)		# Comprueba que hay en el pixel del display
+		beq a7,zero,skip	# Si el pixel no tenia nada, entonces skipea
+		
 		lw t5, 0(a5)		# Carga color de ID
 		sw t5, 0(t3)		# Guarda color en el pixel
 skip:		

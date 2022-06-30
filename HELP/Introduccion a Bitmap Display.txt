@@ -1,0 +1,58 @@
+El Bitmap Display es una de las multiples herramientas proporcionadas por el simulador de
+RiscV RARs. Su funcion es aportar al usuario una visualizacion grafica de los datos guardados
+en memoria.
+
+Esto puede ser util para:
+
+- Comprobar el estado actual de distintas zonas en memoria (memoria gastada, libre...)
+- Comprobar y sacar conclusiones generales de los valores de un conjunto de datos y sus
+  patrones.
+
+Otra función más habitual, que será en la que se centrará los contenidos de este curso es
+la de poder representar figuras, imagenes o otros elementos en el display como si de una
+pantalla habitual se tratase.
+
+Así pues, si queremos visualizar una imagen en un display, tendremos que guardar en memoria
+los datos correspondientes a los colores que componen cada pixel de una imagen en memoria, y
+luego conectar el bitmap display a dicho programa.
+
+Nota: Recordemos que podemos guardar un dato en memoria mediante los comandos, sw,sh y sb.
+
+Para poder abrir la herramienta tendremos que acceder a la Herramienta: Tools/Bitmap_Display
+Una vez abierta encontraremos las siguientes funciones:
+
+- Unit Width in Pixels: Establece la cantidad de pixeles que se ven afectados por cada
+  palabra. Es decir, cada 4 bytes alineados y guardados en memoria, encenderan x pixeles
+  en la pantalla. (Donde x es "Unit Width")
+- Unit Height in Pixels: Establece la cantidad de pixeles en vertical que se ven afectados
+  por cada palabra. Funciona igual que la anterior propiedad, por cada 4 bytes alienados y
+  guardados en memoria, se encenderan x pixeles en vertical en pantalla (Donde x es "Unit
+  Height")
+- Display Width in Pixels: Determina la cantidad de pixeles que tiene cada linea horizontal
+  en pantalla
+- Display Height in Pixels: Determina la cantidad de pixeles que tiene cada linea vertical
+  en pantalla
+- Base adress for Display: Elige la posicion en memoria a partir de la cual se empezaran a
+  leer datos para su representacion en el display
+- Connect/Disconnect from Program: Switch ON/OFF para la lectura de datos. (Encender cuando
+  se desee que comienze la representacion de datos)
+- Reset: Devuelve el valor de cada pixel a "apagado", teniendo por defecto el color de pixel
+  apagado en Negro. (Ojo, no cambia los valores en memoria, solo su representacion)
+- Help: Ofrece informacion básica sobre el Bitmap Display
+- Close: Cierra la Herramienta.
+
+Para poder ver una representacion de un conjunto de datos en memoria, bastará entonces con
+seguir los siguientes pasos:
+- Abrir la herramienta
+- Ajustar las propiedades deseadas
+- Apuntar el Base address al punto en memoria a representar
+- Conectar el Display al Programa
+- Ejecutar el programa
+
+Nota: Solo se representan los NUEVOS valores que se guarden en memoria, no el valor de cada
+espacio. Esto tambien implica que los valores de anteriores programas se pueden solapar con 
+nuevos programas en pantalla. Por esto se recomienda pulsar Reset antes de cada representación.
+
+Puedes notar cierta realentizacion en el bitmap display a medida que ejecutas multiples veces
+tu programa. Esto puede ser debido a la superposicion de datos en el mismo espacio de pantalla
+multiples veces. Si notas dicha realentizacion, puedes solucionarla reiniciando el RARs.

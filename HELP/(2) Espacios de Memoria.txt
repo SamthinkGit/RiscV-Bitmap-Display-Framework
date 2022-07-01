@@ -1,0 +1,52 @@
+El Bitmap Display utiliza un espacio reservado de memoria para leer palabras
+que representaran los colores en cada byte. Estos colores se leeran de manera
+secuencial directamente de la memoria y se mostraran en pantalla una vez se
+halla conectado el Bitmap Display al programa.
+
+El espacio reservado puede comenzar en:
+- 0x10000000 (global data)
+- 0x10008000 (gp)
+- 0x10010000 (static data)
+- 0x10040000 (heap)
+
+El comienzo de esta pantalla puede seleccionarse en los ajustes del Bitmap Display:
+/Tools/Bitmap Display/Base Adress for Display
+
+Junto a estos ajustes encontraras un menú en el que puedes seleccionar el ancho y
+el largo del display. Así pues en funcion de estos dos parámetros el display tendrá
+por defecto su ÚLTIMA posicion en memoria en la direccion señalada en la siguiente tabla:
+
+	0		64		128		256		512		1024
+0	10010000	10010000	10010000	10010000	10010000	10010000
+64	10010000	10014000	10018000	10020000	10030000	10050000
+128	10010000	10018000	10020000	10030000	10050000	10090000
+256	10010000	10020000	10030000	10050000	10090000	10110000
+512	10010000	10030000	10050000	10090000	10110000	10210000
+1024	10010000	10050000	10090000	10110000	10210000	10410000
+
+Nota: Para esta tabla se ha tenido en cuenta el Base Adress 0x10010000. Para 
+calcular los valores de la tabla, basta con multiplicar:SCREEN_W*SCREEN_H*4 
++ DISPLAY (Se multiplica por 4 porque cada palabra tiene 4 bytes)
+
+Ten en cuenta que si cambias las propiedades de "Pixel Width" y "Pixel Heiht" estas
+coordenadas también cambiaran tal que:
+
+- Si aumentas el "Pixel Width" cada palabra activara X pixeles adicionales en
+  horizontal. Dejando el final de pantalla en (SCREEN_W*SCREEN_H*4)/X + DISPLAY
+
+- Si aumentas el "Pixel Heigth" cada palabra activara X pixeles adicionales en
+  vertical. Dejando el final de pantalla en (SCREEN_W*SCREEN_H*4)/X + DISPLAY
+
+Como ayuda adicional, el ejemplo número 1 (Screen_Fill) proporciona un programa que 
+rellena de color rojo una pantalla de 256x256, con base address 0x10010000. Puedes 
+jugar con SCREEN y FINAL_SCREEN sabiendo los parámetros especificados arriba para 
+ver como varian los resultados.
+
+Como veremos más adelante, el resultado de un programa puede variar en funcion del
+Base Address seleccionado. Es por esto que en cada programa/subrutina, dicha constante
+vendrá determinada por la variable SCREEN y deberá respetarse para el adecuado
+funcionamiento.
+
+Nota: Recuerda que a veces es necesario ampliar la ventana del display para ver la 
+pantalla completa.
+

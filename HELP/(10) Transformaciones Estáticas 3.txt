@@ -1,6 +1,6 @@
-Realizar una desplazamiento no suele realizarse de pixel en pixel, mas bien, se suelen
-saltar en funcion de pasos y aumentar y sincronizar el numero de estos para mejorar la
-fluidez.
+Realizar un desplazamiento de una figura no suele realizarse de pixel en pixel, mas bien,
+se suelen saltar en funcion de pasos (varios pixeles) y aumentar y sincronizar el numero
+de estos para mejorar la fluidez.
 
 Para desplazar mediante "pasos" en el bitmap display realizaremos el mismo procedimiento
 que el explicado en "Transformaciones Estáticas 2", teniendo ahora en cuenta las siguientes
@@ -8,7 +8,7 @@ consideraciones.
 
 - Si el paso de la traslacion es de 1 pixel, entonces el caso es el mismo
 - Para pasos mayores a 1, deberemos eliminar el sobrante de las anteriores imagenes
-  mediante un rectangulo de tamaño nxp donde n es ancho/largo de la imagen y p es el
+  mediante un rectangulo de tamaño pxn donde n es ancho/largo de la imagen y p es el
   paso realizado.
 - Si el paso es muy grande, el programa tendera a realentizarse, siendo más efectivo o
   bien no realizar una traslacion sino una copia, o bien reducir el rectángulo de borrado
@@ -18,6 +18,6 @@ Recuerda que tienes que tener cuidado con no confundir las coordenadas de la ima
 las coordenadas del rectángulo de borrado, que siempre ira por detras (mediante correciones)
 de las coordenadas de la imagen, pues esta borrando los rastros.
 
-Como ayuda adicional se adjunta el Útil "SPEED_MOVE.s" y el ejemplo "Static_Speed_Move" 
+Como ayuda adicional se adjunta el Útil "SPEED_MOVE.s" y el ejemplo 9 "Static_Speed_Move" 
 donde puedes probar a realizar traslaciones en distintas direcciones. Puedes cambiar
 el color de TRAIL_COLOR para ver mejor que es lo que esta sucediendo.

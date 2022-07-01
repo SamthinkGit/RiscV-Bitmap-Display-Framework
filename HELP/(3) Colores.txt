@@ -1,9 +1,16 @@
+Para representar un color en el bitmap display, tenemos que guardar una
+palabra en el espacio de memoria determinado por el Base Address. En función
+del dato que guardemos, el bitmap representarea un color u otro.
+
 Los colores en el bitmap Display se representan mediante una combinación
-RGB. Si suponemos una palabra 0xAABBCCDD, las letras BB modifican la
-cantidad de Rojo, lo mismo con las letras CC para el verde y DD para el
-azul. Las letras AA no modifican nada. Así pues con guardar el color 
-deseado en el pixel que deseemos como se explica en "Espacios de Memoria",
-podremos visualizar el color configurado.
+RGB. Si suponemos una palabra 0xAARRGGBB, las letras RR modifican la
+cantidad de Rojo, lo mismo con las letras GG para el verde y BB para el
+azul. Las letras AA no modifican nada. Así pues, tendremos 256 (0xff)
+combinaciones de rojo, 256 de azul y 256 de verde, con un total de 16.777.216
+combinaciones totales de colores.
+
+Nota: Recuerda que cualquier color en pantalla es combinacion de los colores
+Rojo, Verde y Azul.
 
 Algunas combinaciones de colores son las siguientes:
 
@@ -38,4 +45,5 @@ Todas estas combinaciones vienen guardadas en Colors.s (Utils)
 Puedes crear más combinaciones desde el siguiente enlace:
 https://www.rapidtables.com/web/color/RGB_Color.html
 
-También puedes comprobar el ejemplo 2 (Multicolor_Fill)
+Como ayuda adicional, puedes comprobar el ejemplo 2 (Multicolor_Fill) y 
+jugar con los colores generados en pantalla.

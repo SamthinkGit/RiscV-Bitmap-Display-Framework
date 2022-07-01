@@ -8,11 +8,12 @@ hay que seguir los siguientes pasos:
 - Repetir el proceso hasta que el puntero apunte a la última linea
 
 El proceso es siempre el mismo y se puede hacer con lineas verticales, sin embargo,
-es mucho más optimo realizarlo con horizontales (Revisar codigo de ambas subrutinas).
+es mucho más optimo realizarlo con horizontales (menos calculos de cambio de linea).
 
-Nota: Recuerda tener cuidado con los registros ra y sp, y la perdida de variables tras
+Nota: Recuerda tener cuidado con los registros ra, sp, y la perdida de variables tras
 llamar a subrutinas.
 
-En Utils se adjunta un ejemplo que se puede utilzar para crear rectángulos introduciendo
-sus coordenadas, dimensiones y color. (Rectangles), recuerda que solo esta diseñado para
-funcionar en displays 512x512
+En Utils se adjunta una subrutina que se puede utilzar para crear rectángulos introduciendo
+sus coordenadas, dimensiones y color. (Rectangles.s), recuerda que por defecto esta diseñado
+para funcionar en displays 512x512. De igual modo se adjunta el ejemplo 5 Rectangles.asm 
+en el que puedes probar a diseñar distintas figuras.

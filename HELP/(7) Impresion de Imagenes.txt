@@ -6,9 +6,9 @@ un tamaño especificado (64x64,128x128...) en la siguiente plataforma online:
 https://es.pixilart.com/draw/16x16-1fd3f39f05fdf50
 
 Una imagen esta compuesta por un conjunto de pixeles con una combinacion de colores RGB
-como se explica en "Colores.txt". Esta combinación en el RARs se expresa utilzando
-combinaciones hexadecimales. Existen gran cantidad de conversores de imagen a mapa de
-bits. En nuestro caso utilizaremos el siguiente conversor gratuito:
+como se explica en "Colores.txt". Esta combinación en el RARs se expresa utilizando
+una secuencia de combinaciones hexadecimales. Existen gran cantidad de conversores de 
+imagen a mapa de bits (bitmap). En nuestro caso utilizaremos el siguiente conversor gratuito:
 
 https://lvgl.io/tools/imageconverter
 (Output Format RGB888)
@@ -19,7 +19,7 @@ Como este fichero esta en binario (.bin) podemos trabajar directamente con su co
 redirigiendolo a otro fichero de texto (.txt). Para conseguir esto podemos directamente
 desde una terminal introducir:
 
-$ od -A n -j 4 -vt x4 .\Image.bin | tr -d '\r\n' > .\Image.txt
+$ od -A n -j 4 -vt x4 .\Image.bin | tr -d '\n' > .\Image.txt
 
 (donde "Image" es el nombre del fichero)
 Nota: Puede ejectutarse desde el terminal de Windows con WinGNU
@@ -30,7 +30,7 @@ od -> Lee un formato binario
 -A n -> Elimina el número de linea
 -j 4 -> Elimina los primeros 4 bytes (No son de la imagen)
 -vt x4 -> Codifica en hexadecimal (Cogiendo de a parejas de 4)
-tr -d '\r\n' -> Elimina los saltos de linea (IMPORTANTE: En linux su equivalente es '\n')
+tr -d '\n' -> Elimina los saltos de linea (IMPORTANTE: En Windows su equivalente es '\r\n')
 
 Una vez obtenido el valor en hexadecimal de cada pixel debemos guardarlo en memoria.
 
@@ -48,15 +48,15 @@ Una vez guardado en memoria. Podemos imprimir la imagen creando un bucle que:
 
 Un factor a tener en cuenta es el coste en memoria del procesador de este método.
 Tenemos que guardar TODOS los pixeles de la imagen en memoria en tiempo de compilacion,
-una idea que queda fuera de los contenidos de esta guía puede ser tomar los valores 
-directamente del archivo de texto en tiempo de ejecución. Lo que libera al procesador
-del guardado de datos.
+una idea que queda fuera de los contenidos de esta guía puede ser tomar los valores de
+cada pixel directamente del archivo de texto en tiempo de ejecución. Lo que libera al 
+procesador del guardado de datos.
 
-Como ayuda adicional se ha agregado el ejemplo (Simple Shapes) con una representacion en
+Como ayuda adicional se ha agregado el ejemplo 6 "Simple Shapes" con una representacion en
 512x512 de una imagen. Para ello tambien se adjunta el útil IMAGE.s que representa una
 imagen en un display de tamaño variable SIZE.
 
-Importante: Con este util pueden suceder errores en el tiempo de ejecución si la imagen
+Importante: Con este util pueden suceder errores en tiempo de ejecución si la imagen
 a imprimir es muy grande y por tanto, ocupa mucho espacio en el RiscV.
 
 

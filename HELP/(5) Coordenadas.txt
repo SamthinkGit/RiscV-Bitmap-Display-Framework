@@ -1,5 +1,5 @@
-Un pixel se puede representar mediante una combinacion de coordenadas (120,110), sin
-embargo, como ya se explica en "Espacios de Memoria" y "Lineas y Punteros", estas 
+Resulta más facil apuntar a un pixel mediante una combinacion de coordenadas (x,y),
+sin embargo, como ya se explica en "Espacios de Memoria" y "Lineas y Punteros", estas 
 coordenadas pueden fluctuar en funcion del display que se este utilizando. Así pues 
 un método para calcular dichas coordenadas puede ser el siguiente:
 
@@ -8,12 +8,16 @@ un método para calcular dichas coordenadas puede ser el siguiente:
    recorrer en cada linea por el numero de lineas)
 3. Sumar ambas variables
 
+Nota: La variable y realmente se esta multiplicando por el correspondiente salto de 
+linea teniendo en cuenta el "Unit Width", es recomendable dejarlo a 1 para evitar
+posteriores complicaciones.
+
 Recuerda que debes tener cuidado con si quieres empezar en el 0 o en el 1. En el resto
 de programas y explicaciones consideraremos lo siguiente:
 
-- El display sera de 512x512 por omision
+- El display sera de 512x512 por defecto
 - Se comienza en el (0,0) y termina en el (511,511)
 - El puntero de fin de display se apuntará a (512,511)
 
 Si deseas obtener las coordenadas en estas condiciones se deja a disposicion la herramienta
-COORD.s (Utils) y el ejemplo Coordenates.asm (Ejemplos)
+COORD.s (Utils) y el ejemplo Coordenates.asm (Ejemplo 4)

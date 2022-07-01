@@ -2,11 +2,15 @@ Una vez hemos aprendido a utilizar los P&P y a crear transformaciones dinámicas
 crear transformaciones que no alteren el entorno tal que para todo A y B, T(A+B)-B = T(A)
 y T(A+B)-T(A)=B
 
-Esto es util para si, por ejemplo, queremos realizar una trasformacion a una imagen (inteligente)
-A pero esta se encuentra superpuesta sobre otra imagen B y no queremos perder datos de B.
+Es decir, para toda transformacion que ocurra sobre una imagen A que se encuentre sobre
+superpuesta sobre una imagen B, no alterará las propiedades de B y viceversa.
+
+Esto es util para si, por ejemplo, queremos realizar una trasformacion a una imagen 
+(inteligente) A pero esta se encuentra superpuesta sobre otra imagen B y no queremos
+perder datos de B.
 
 Como último concepto de los contenidos aplicaremos este concepto directamente sobre el 
-método SHIFT. Consiguiendo un movimiento que no altere las propiedades de su entorno. El
+método SHIFT. Consiguiendo una traslación que no altere las propiedades de su entorno. El
 resultado final dará la sensacion de poder mover una imagen PNG sobre otra imagen sin ser
 alterada, tal y como lo hace un mouse en pantalla.
 
@@ -15,7 +19,7 @@ Así pues, la nueva función SHIFT tendrá las siguientes consideraciones:
   la subrutina interna SPEED_MOVE, que pasará a ser PATCH_SPEED_MOVE
 - Ya no se crearán lineas negras ni rectangulos que eliminen los trails, en su lugar se
   aplicará un parche a la imagen restaurando los bytes perdidos. Esto implica que ya no
-  es necesaria la subrutina MOVE, bastará con SPEED_MOVE.
+  es necesaria la subrutina MOVE, bastará con PATCH_SPEED_MOVE.
 - La imagen se imprimirá con un P&P que tendrá en cuenta la imagen a la que esta superpuesta
   puediendo tomar sus datos directamente de su ID
 
@@ -27,5 +31,5 @@ A rasgos de código, realmente solo notaremos los siguientes cambios:
   nuestro caso, entenderemos a la global "background" como el ID de la imagen de parche por
   defecto.
 
-Adicionalmente, se adjunta el util PATCH_SPEED_MOVE.s y el ejemplo "P&P_Move.asm" para que
+Adicionalmente, se adjunta el util PATCH_SPEED_MOVE.s y el ejemplo 14 "P&P_Move.asm" para que
 puedas probar estas nuevas funcionalidades a tu gusto.

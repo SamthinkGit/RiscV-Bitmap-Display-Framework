@@ -1,5 +1,5 @@
 El Bitmap Display es una de las multiples herramientas proporcionadas por el simulador de
-RiscV RARs. Su funcion es aportar al usuario una visualizacion grafica de los datos guardados
+RiscV del RARs. Su funcion es aportar al usuario una interpretación grafica de los datos guardados
 en memoria.
 
 Esto puede ser util para:
@@ -9,7 +9,7 @@ Esto puede ser util para:
   patrones.
 
 Otra función más habitual, que será en la que se centrará los contenidos de este curso es
-la de poder representar figuras, imagenes o otros elementos en el display como si de una
+la de poder representar figuras, imagenes u otros elementos en el display como si de una
 pantalla habitual se tratase.
 
 Así pues, si queremos visualizar una imagen en un display, tendremos que guardar en memoria

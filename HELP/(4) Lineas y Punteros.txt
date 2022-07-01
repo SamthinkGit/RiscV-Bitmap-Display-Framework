@@ -1,0 +1,39 @@
+Para poder crear una línea en la pantalla del display distinguimos entre dos
+casos similares. El primer caso es el de una linea horizontal.
+
+Para crear una linea horizontal es necesario crear un bucle que:
+1. Recorre secuencialmente palabras en memoria
+2. Por cada palabra que salta, guarda el hexadecimal asociado al color
+   que deseamos en dicho espacio.
+3. Cuando se haya repetido este proceso n veces (donde n es la longitud de la 
+   linea), el proceso termina.
+
+Esta funcion debe tener las siguientes consideraciones:
+
+- De pixel a pixel hay 1 palabra de 4 bytes (Suponiendo un "Unit Witdth"=1)
+- Debe existir un puntero inicial y uno final asociado a la posicion
+  en memoria del recorrido, o en su defecto, un contador (sin embargo, incrementar
+  en cada repeticion del bucle el contador hace al programa ligeramente menos 
+  eficiente, es mejor utilizar un puntero final, pues este proceso se ejecutara miles
+  de veces en muchos programas)
+
+En el caso de la linea vertical el proceso es el mismo sin embargo hay que
+tener en cuenta que los saltos deben de ser del tamaño de la pantalla.
+Es decir si por ejemplo usamos una pantalla de 64 pixeles, cada salto entre
+pixel debe de ser de 64*4 bytes.
+
+Este proceso de "sumar el tamaño de pantalla" es lo que entenderemos como realizar un
+"salto de linea". TEN CUIDADO: Un salto de linea realmente desplaza al pixel que tiene
+debajo, no al prinicipio de la siguiente fila de pixeles. Recuerda que si modificas el 
+"Unit Width", este salto de linea aumentara tal que SIZE*4*Width.
+
+Nota: Más adelante veremos saltos de linea más complejos, en los que tendremos que tener
+en cuenta que nos hemos desplazado antes de realizar el salto, por lo que el nuevo salto
+será (SIZE-DESPLAZAMIENTO)*4. También veremos el caso en el que SIZE no corresponde al
+tamaño de pantalla, sino a figuras más complejas. Todo esto viene explicado en su 
+correspondiente capitulo.
+
+Un ejemplo de esta implementación esta en el ejemplo 3 (Standart_Line)
+Se adjuntan tambien las funciones ya implementadas (H_LINE) y (V_LINE) que te ayudarán a
+crear lineas verticales y horizontales. Como las demas funciones, estarán todas reunidas 
+en la Carpeta (Utils)

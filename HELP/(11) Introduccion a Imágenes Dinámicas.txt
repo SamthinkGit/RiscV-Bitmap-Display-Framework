@@ -1,10 +1,10 @@
 Cuando realizamos transformaciones a una imagen, ya sea imprimirla en pantalla, escalarla
-o moverla. Resulta muy dificil mantener el control de sus propiedades, perdemos la
+o moverla; resulta muy dificil mantener el control de sus propiedades, perdemos la
 secuencia de colores RGB, las coordenadas cambian, etc.
 
 Para solucionar esto se crean las imagenes dinámicas. Un espacio reservado en memoria
 que almacena datos sobre la imagen, incluyendo la imagen en si. Así pues, las funciones
-dinámicas, trabajaran directamente sobre estas imagenes inteligentes.
+dinámicas, trabajaran directamente sobre estas "imagenes inteligentes".
 
 Hay varias maneras de construirlas, pero por simplicidad, nosotros crearemos un
 constructor que tome un conjunto de pixeles EN PANTALLA y los convierta en imagen
@@ -13,17 +13,17 @@ impreso la imagen, pero esto dará conflictos con las transformaciones estática
 
 Así pues este espacio en memoria guardara los siguientes datos:
 
-0 -> Puntero a Imagen en el Display
-4 -> Puntero a Final de Imagen en el Display
-8 -> Coordenada X actual de la imagen
-10 -> Coordenada Y actual de la imagen
-12 -> Ancho
-14 -> Alto
-16 (en adelante) -> Bitmap RGB de la imagen
++0 -> Puntero a Imagen en el Display
++4 -> Puntero a Final de Imagen en el Display
++8 -> Coordenada X actual de la imagen
++10 -> Coordenada Y actual de la imagen
++12 -> Ancho
++14 -> Alto
++16 (en adelante) -> Bitmap RGB de la imagen
 
 Como se ve, guardaremos por eficiencia algunos datos en medias palabras (limitando
 ciertamente el tamaño máximo). Estos datos seran recopilados por un constructor que
-denominaremos con NEW_IMAGE.
+denominaremos con NEW_IMAGE.s
 
 El constructor debe tener las siguientes consideraciones:
 - Primero debe pedir y recolectar los datos para almacenarlos todos en una secuencia
@@ -34,8 +34,9 @@ El constructor debe tener las siguientes consideraciones:
   coordenadas para abstraer en cierta medida al usuario del uso de punteros.
 - Se accedera a sus propiedades llamando al puntero a imagen inteligente y sumando el
   desfase necesario.
-- Si una transformacion se aplica a la imagen, sus propiedades deben mutar de igual modo
+- Si una transformacion se aplica a la imagen, sus propiedades deben mutar de modo que
+  estas se ajusten a las nuevas condiciones.
 
 Como ayuda adicional se adjunta un constructor denominado como "NEW_IMAGE.s" y un
-ejemplo de uso junto a una transformacion simple en "Dinamic_Image.asm"
+ejemplo de uso junto a una transformacion simple en "Dinamic_Image.asm" (Ejemplo 10)
 Prueba a jugar con el constructor y las coordenadas para ver que ocurre

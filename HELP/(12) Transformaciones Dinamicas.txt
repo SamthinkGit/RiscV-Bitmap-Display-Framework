@@ -22,13 +22,14 @@ CUT y SHIFT.
 REMOVE es una transformacion que pseudoelimina la imagen. No la elimina del todo por que
 seguira existiendo en memoria como objeto inteligente. Si queremos eliminarla del todo
 bastara con olvidar que ese espacio en memoria esta ocupado y dejarlo libre para ser
-sobreescrito.
-Así pues, la subrutina REMOVE debe convertir la imagen al color de borrado. En nuestro
-caso, el color de borrado será el Negro, debido a que así es el fondo del bitmap display.
-Igualmente, dicho color puede ser modificado a cualquier otro (en nuestro ejemplo,
-cambiando la constante REMOVE_COLOR).
+sobreescrito. (Cambiar su bitmap a 0 puede ser otra consideración válida)
 
-Para conseguir esto, la subrutina deberá:
+Así pues, la subrutina REMOVE debe convertir la imagen al color de borrado en el display.
+En nuestro caso, el color de borrado será el Negro, debido a que así es el fondo del bitmap
+display. Igualmente, dicho color puede ser modificado a cualquier otro cambiando la constante
+REMOVE_COLOR.
+
+Para realizar un REMOVE, la subrutina deberá:
 
 - Tomar la ID de la imagen
 - Obtener las propiedades de posicion de la imagen
@@ -39,13 +40,13 @@ debido a que al pedir las coordenadas, pedimos half-words.
 
 ----------------------------------------- CUT -------------------------------------------
 
-Realmente CUT es una transformación variante del REMOVE. Pues realizará la misma accion 
+Realmente CUT es una transformación variante de REMOVE. Pues realizará la misma accion 
 que tal pero ahora imprimira la imagen de nuevo en otras cordenadas. Dando la sensacion
 de que se ha copiado y pegado. Para conseguir esto la subrutina deberá:
 
 - Tomar la ID de la imagen
 - Realizar un REMOVE
-- Obtener el puntero a imagen (addi a0, a0, 16 # donde a0 = ID)
+- Obtener el puntero al bitmap (addi a0, a0, 16 # donde a0 = ID)
 - Imprimir la imagen en las nuevas coordenadas especificadas
 - Actualizar las propiedades de la imagen dinamica a sus nuevas coordenadas
 
@@ -81,4 +82,5 @@ Si te fijas, realmente el esquema de las transformaciónes dinámicas es siempre
 - Realizar la transformacion (estática o dinámica)
 - Actualizar las propiedades (Si es necesario)
 
-
+Como ayuda adicional, se adjunta el ejemplo 11 "Simple_Transformations" donde puedes ver
+las subrutinas REMOVE.s, SHIFT.s y CUT.s en accion (tambien adjuntadas en Utils)

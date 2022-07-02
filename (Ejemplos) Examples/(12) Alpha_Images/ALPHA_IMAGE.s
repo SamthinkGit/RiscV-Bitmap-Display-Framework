@@ -8,7 +8,7 @@
  		
  		.eqv SIZE 128
  		.eqv SCREEN 0x10040000
- 		.eqv ALPHA_COLOR 0xff000000
+ 		.eqv ALPHA_COLOR 0xff000000 # (L)
  		
 		.globl IMAGE
 		

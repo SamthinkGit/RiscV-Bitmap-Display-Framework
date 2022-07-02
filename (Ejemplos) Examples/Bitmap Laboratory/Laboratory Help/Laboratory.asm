@@ -1,3 +1,4 @@
+
 # ---------------- MAIN ------------------------------------------------------------------------------------------------------------------------
 # Nombre: 
 # Funcion: Laboratorio de Pruebas con una simulacion con varias funciones activadas por defecto.
@@ -58,6 +59,9 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 
 				.text
 
+	# Imprimimos el mouse antes que nada en una zona
+	# libre del display para mas adelante asignarle un ID
+	# Más información: Help(7)
 	# ---------------- Imprimir Imagen ---------------------
 	la a0, mouse	# Imagen
 	li a1,20		# Ancho
@@ -66,7 +70,11 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a4, 200		# Coordenada Y
 	jal IMAGE
 	
-
+	
+	# Convertimos el mouse a una imagen inteligente
+	# Coordenada X' = X+Ancho
+	# Coordenada Y'= Y+Alto
+	# Más información Help(11)
 	# --------------- Convertir a Imagen Dinamica---------
 	la a0, mouse		# ID
 	li a1,160			# Coordenada X
@@ -75,7 +83,10 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a4,220			# Coordenada Y'
 	jal NEW_IMAGE
 	
-
+	
+	# Imprimimos la imagen del boton rojo en una zona
+	# libre del display para mas adelante asignarle un ID
+	# Más información: Help(7)
 	# ---------------- Imprimir Imagen ---------------------
 	la a0, background	# Imagen
 	li a1,100		# Ancho
@@ -84,7 +95,11 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a4, 100		# Coordenada Y
 	jal IMAGE
 	
-
+	
+	# Convertimos el boton rojo a una imagen inteligente
+	# Coordenada X' = X+Ancho
+	# Coordenada Y'= Y+Alto
+	# Más información Help(11)
 	# --------------- Convertir a Imagen Dinamica---------
 	la a0, background		# ID
 	li a1,100				# Coordenada X
@@ -93,11 +108,17 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a4,140				# Coordenada Y'
 	jal NEW_IMAGE
 	
-
+	
+	# Bucle que deja a la consola esperando. Realiza 0x2ffff
+	# veces la suma de un contador
 	# ------------- Esperar --------------
 	li a0, 0x2ffff
 	jal wait
-
+	
+	# Realizamos un desplazamiento dinámico a la imagen del
+	# cursor llamando a su ID. Internamente se esta utilizando
+	# P&P para evitar la colision de imagenes y pérdida de datos
+	# Más informacion: Help(15)
 	# --------------- Mover Cursor hacia arriba ---------
 	la a0, mouse			# ID
 	li a1, 3				# Direccion
@@ -105,34 +126,51 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a3, 2				# Velocidad
 	jal SHIFT		
 	
+	# Bucle que deja a la consola esperando. Realiza WAIT_TIME
+	# veces la suma de un contador
 	# ----- Esperar ------
 	li a0, WAIT_TIME
 	jal wait
 	
-
+	# Imprimimos imagen "click_text" en pantalla en las coordenadas
+	# especificadas. Se llama a la subrutina "click" en este mismo fichero
+	# para realizar dicha acción.
 	# -------- Aparecer click en pantalla
 	li s0, 170
 	li s1,85
 	jal click
 	
+	# Bucle que deja a la consola esperando. Realiza WAIT_TIME
+	# veces la suma de un contador
 	# ---- Esperar -----
 	li a0, WAIT_TIME
 	jal wait
 	
+	# Realizamos un desplazamiento con CUT a la imagen del
+	# cursor llamando a su ID. La posicionamos para más adelante 
+	# no perder datos de otras imagenes
+	# Más informacion: Help(12)
 	# --------------- Mover Cursor hacia la derecha---------
 	la a0, mouse		# ID
 	li a1, 400			# Coordenada X
 	li a2, 120			# Coordenada Y
 	jal CUT
 	
+	
+	# Eliminamos el cursor del display llamando a su ID
+	# Más informacion: Help(12	) (Remove)
 	# --------------- Eliminar cursor---------
 	la a0, mouse
 	jal REMOVE
 	
+	# Eliminamos el boton rojo del display llamando a su ID
+	# Más informacion: Help(12) (Remove)
 	# --------------- Eliminar Boton Rojo---------
 	la a0, background
 	jal REMOVE
 	
+	# Imprimimos un Rectangulo de color Gris_Claro para la creación
+	# del control de la animación. Más información en Help(6)
 	# ---------------- Creacion de Fondo de Pantalla ---------------------
 	li a0,100		# Coordenada X
 	li a1,100		# Coordenada Y
@@ -141,6 +179,8 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a4, GRIS_CLARO		# Color
 	jal RECTANGLE
 	
+	# Imprimimos un Rectangulo de color Gris_Medio para la creación
+	# del control de la animación. Más información en Help(6)
 	# ---------------- Creacion de Fondo de Pantalla ---------------------
 	li a0,105		# Coordenada X
 	li a1,105		# Coordenada Y
@@ -149,6 +189,9 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a4, GRIS_MEDIO		# Color
 	jal RECTANGLE
 	
+	# Imprimimos el control en una zona
+	# libre del display para mas adelante asignarle un ID
+	# Más información: Help(7)
 	# ---------------- Imprimir Control ---------------------
 	la a0, Control	# Imagen
 	li a1,60		# Ancho
@@ -157,6 +200,10 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a4, 100		# Coordenada Y
 	jal IMAGE
 	
+	# Convertimos el control a una imagen inteligente
+	# Coordenada X' = X+Ancho
+	# Coordenada Y'= Y+Alto
+	# Más información Help(11)
 	# --------------- Convertir a Imagen Dinamica---------
 	la a0, background		# ID
 	li a1,380				# Coordenada X
@@ -165,6 +212,9 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a4,250				# Coordenada Y'
 	jal NEW_IMAGE
 	
+	# Movemos el cursor hacia arriba 1 solo pixel para forzar su aparición
+	# en el display. Internamente se esta utilizando P&P. Más información
+	# en Help(15)
 	# --------------- Mover Cursor hacia arriba (Aparecer con Patch) ---------
 	la a0, mouse			# ID
 	li a1, 3				# Direccion
@@ -172,10 +222,16 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a3, 1				# Velocidad
 	jal SHIFT	
 	
+		
+	# Bucle que deja a la consola esperando. Realiza WAIT_TIME
+	# veces la suma de un contador
 	# ---- Esperar -----
 	li a0, WAIT_TIME
 	jal wait
 	
+	# Movemos el cursor hacia abajo 15 pixeles.
+	# Internamente se esta utilizando P&P. Más información
+	# en Help(15)
 	# --------------- Mover Cursor hacia abajo ---------
 	la a0, mouse			# ID
 	li a1, 1				# Direccion
@@ -183,19 +239,29 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a3, 1				# Velocidad
 	jal SHIFT	
 	
+			
+	# Bucle que deja a la consola esperando. Realiza WAIT_TIME
+	# veces la suma de un contador
 	# ---- Esperar -----
 	li a0, WAIT_TIME
 	jal wait
 	
+	# Imprimimos imagen "click_text" en pantalla en las coordenadas
+	# especificadas. Se llama a la subrutina "click" en este mismo fichero
+	# para realizar dicha acción.
 	# -------- Aparecer click en pantalla
 	li s0, 450
 	li s1,120
 	jal click
 	
+	# Bucle que deja a la consola esperando. Realiza WAIT_TIME
+	# veces la suma de un contador
 	# ---- Esperar -----
 	li a0, WAIT_TIME
 	jal wait
 	
+	# Imprimimos imagen "Gradient_text" en pantalla en las coordenadas
+	# especificadas. No se realiza P&P. Más información en Help(7)
 	# ---------------- Imprimir texto de Gradiente ---------------------
 	la a0, Gradient_Text	# Imagen
 	li a1,60				# Ancho
@@ -205,6 +271,9 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a5, 3				# Escala
 	jal RESIZE_IMAGE
 	
+	
+	# Llamamos a COORD.s para obtener el puntero para más tarde
+	# crear un gradiente, más información en Help(5)
 	#  ------------- Obtencion de Puntero ----------
 	li a0,105		# Coordenada X
 	li a1,105		# Coordenada Y
@@ -214,15 +283,22 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	
 	mv s4,a0 # Guardamos el puntero para mas tarde
 	
+	# Llamamos a la subrutina Gradient en este mismo fichero para imprimir
+	# un gradiente en pantalla en las coordenadas indicadas
 	# --------------- Creacion de Gradiente -----------
 	li a1,270		# Ancho
 	li a2,140		# Alto
 	jal Gradient
 	
+	# Bucle que deja a la consola esperando. Realiza WAIT_TIME
+	# veces la suma de un contador
 	# ---- Esperar -----
 	li a0, WAIT_TIME
 	jal wait
 	
+	# Movemos el cursor hacia abajo 40 pixeles.
+	# Internamente se esta utilizando P&P. Más información
+	# en Help(15)
 	# --------------- Mover Cursor hacia abajo ---------
 	la a0, mouse			# ID
 	li a1, 1				# Direccion
@@ -230,19 +306,30 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a3, 1				# Velocidad
 	jal SHIFT	
 	
+	# Bucle que deja a la consola esperando. Realiza WAIT_TIME
+	# veces la suma de un contador
 	# ---- Esperar -----
 	li a0, WAIT_TIME
 	jal wait
 	
+	# Imprimimos imagen "click_text" en pantalla en las coordenadas
+	# especificadas. Se llama a la subrutina "click" en este mismo fichero
+	# para realizar dicha acción.
 	# -------- Aparecer click en pantalla
 	li s0, 450
 	li s1,140
 	jal click
 	
+	# Bucle que deja a la consola esperando. Realiza WAIT_TIME
+	# veces la suma de un contador
 	# ---- Esperar -----
 	li a0, WAIT_TIME
 	jal wait
 	
+	# Imprimimos un rectangulo del mismo color que el
+	# fondo para dar la sensación de que se ha eliminado el texto
+	# sin tener que convertir la imagen a ID.
+	# Más información en Help(12) (Remove)
 	# ---------------- Eliminar Texto Gradiente ---------------------
 	li a0,160		# Coordenada X
 	li a1,50		# Coordenada Y
@@ -251,6 +338,9 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a4, NEGRO		# Color
 	jal RECTANGLE
 	
+		
+	# Imprimimos imagen "Images.text" en pantalla en las coordenadas
+	# especificadas. No se realiza P&P. Más información en Help(7)
 	# ---------------- Imprimir texto de Imagen ---------------------
 	la a0, Images_Text	# Imagen
 	li a1,40				# Ancho
@@ -260,6 +350,9 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a5, 3				# Escala
 	jal RESIZE_IMAGE
 	
+		
+	# Imprimimos imagen "Beach" en pantalla en las coordenadas
+	# especificadas. No se realiza P&P. Más información en Help(7)
 	# ---------------- Imprimir Imagen de Playa---------------------
 	la a0, Beach	# Imagen
 	li a1,270		# Ancho
@@ -268,11 +361,16 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a4, 105		# Coordenada Y
 	jal IMAGE
 	
-		
+	# Bucle que deja a la consola esperando. Realiza WAIT_TIME
+	# veces la suma de un contador
 	# ---- Esperar -----
 	li a0,WAIT_TIME
 	jal wait
 	
+	
+	# Movemos el cursor hacia abajo 40 pixeles 
+	# en el display. Internamente se esta utilizando P&P. Más información
+	# en Help(15)
 	# --------------- Mover Cursor hacia abajo ---------
 	la a0, mouse			# ID
 	li a1, 1				# Direccion
@@ -280,20 +378,28 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a3, 1				# Velocidad
 	jal SHIFT	
 	
-	
+	# Bucle que deja a la consola esperando. Realiza WAIT_TIME
+	# veces la suma de un contador
 	# ---- Esperar -----
-	li a0, WAIT_TIME
+	li a0,WAIT_TIME
 	jal wait
 	
+	# Imprimimos imagen "click_text" en pantalla en las coordenadas
+	# especificadas. Se llama a la subrutina "click" en este mismo fichero
+	# para realizar dicha acción.
 	# -------- Aparecer click en pantalla
 	li s0, 450
 	li s1,200
 	jal click
 	
+	# Bucle que deja a la consola esperando. Realiza WAIT_TIME
+	# veces la suma de un contador
 	# ---- Esperar -----
 	li a0, WAIT_TIME
 	jal wait
 	
+	# Imprimimos imagen "Animation_text" en pantalla en las coordenadas
+	# especificadas. No se realiza P&P. Más información en Help(7)
 	# ---------------- Imprimir texto de Animacion ---------------------
 	la a0, Animation_Text	        # Imagen
 	li a1,80				# Ancho
@@ -303,6 +409,10 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a5, 3				# Escala
 	jal RESIZE_IMAGE
 	
+	# Imprimimos un rectangulo del mismo color que el
+	# fondo para dar la sensación de que se ha eliminado el contenido de
+	# la pantalla sin tener que convertir la imagen a ID.
+	# Más información en Help(12) (Remove)
 	# ---------------- Fondo de Pantalla a Negro ---------------------
 	li a0,105		# Coordenada X
 	li a1,105		# Coordenada Y
@@ -311,11 +421,18 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a4, NEGRO		# Color
 	jal RECTANGLE
 	
+	# Llamamos a la subrutina interna burn que se encargara
+	# de imprimir en pantalla la animacion "burn.png". Lo realizará
+	# a0 veces
 	# ------------ Imprimir Animacion -------------------
 	mv a0,s4
 	li a0, 3
 	jal burn
 
+	# Imprimimos un rectangulo del mismo color que el
+	# fondo para dar la sensación de que se ha eliminado todo el contenido
+	# del display sin tener que convertir la imagen a ID.
+	# Más información en Help(12) (Remove)
 	# ---------------- Fondo de Pantalla a Negro ---------------------
 	li a0,100		# Coordenada X
 	li a1,50		# Coordenada Y
@@ -324,7 +441,9 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a4, NEGRO	# Color
 	jal RECTANGLE
 			
-			
+	
+	# Imprimimos imagen "Bitmap_text" en pantalla en las coordenadas
+	# especificadas. No se realiza P&P. Más información en Help(7)
 	# ---------------- Imprimir texto de Bitmap ---------------------
 	la a0, Bitmap_Text	        # Imagen
 	li a1,80				# Ancho
@@ -333,11 +452,18 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 	li a4, 120				# Coordenada Y
 	li a5, 4				# Escala
 	jal RESIZE_IMAGE
+	
 				
+	# Bucle que deja a la consola esperando. Realiza WAIT_TIME
+	# veces la suma de un contador		
 	# ---- Esperar -----
 	li a0, 0x6ffff
 	jal wait
 	
+	# Imprimimos un rectangulo del mismo color que el
+	# fondo para dar la sensación de que se ha eliminado todo el contenido
+	# del display sin tener que convertir la imagen a ID.
+	# Más información en Help(12) (Remove)
 	# ---------------- Borrar Texto Bitmap ---------------------
 	li a0,100		# Coordenada X
 	li a1,120		# Coordenada Y
@@ -354,9 +480,11 @@ background:	.word 0xff383838 0xff383838 0xff383838 0xff383838 0xff383838 0xff383
 
 
 
-# --------------------- SUBRUTINAS INTERNAS ------------------------------------------------------
+# --------------------- SUBRUTINAS INTERNAS ----------------------------------------------------------------
 
 # ---------------- SUBRUTINA: wait  ---------------------------------------	
+# Buc,e que mete a la consola en un contador con paso 1 hasta 
+# alcanzar a0. Hará esperar a la consola
 wait:
 		li a1,0
 bucle:
@@ -367,6 +495,9 @@ fin:
 		ret
 
 # ---------------- SUBRUTINA: click  ---------------------------------------
+# Subrutina que imprime "click_text" en las coordenadas x=a0,
+# y=a1. Llama a IMAGE.s sin P&P integrado. Más información en
+# Help(7)
 
 click:
 	
@@ -383,7 +514,11 @@ click:
 	# ----- Esperar ------
 	li a0, WAIT_TIME
 	jal wait
-
+	
+	# Imprimimos un rectangulo del mismo color que el
+	# fondo para dar la sensación de que se ha eliminado
+	# sin tener que convertir la imagen a ID.
+	# Más información en Help(12) (Remove)
 	# ---------------- Borrado Estático de Click ---------------------
 	mv a0,s0		# Coordenada X
 	mv a1,s1		# Coordenada Y
@@ -397,6 +532,11 @@ click:
 
 
 # ---------------- SUBRUTINA: Gradient  ---------------------------------------
+# Realizamos un gradiente siguiendo los ajustes aprendidos en
+# el ejemplo 2 (Multicolor_Fill). Flip-flop utilizado para cambiar el
+# color cada 2 pixeles en vez de 1. Fix de gradiente realizado para 
+# la creación de gradientes suavizados.
+# Más información en Help(3)
 # Argumentos:
 # a0: Puntero a inicio
 # a1: Ancho
@@ -413,7 +553,12 @@ Gradient:
 	mul t4,t1,t3			# Salto de Linea (en bytes)
 	li t6,0				# Contador de cambio de color
 	li a6, 1				# Flip-Flop Cambio de color
-
+	
+	# Alteración de color: Para cambiar de fila en el gradiente de una
+	# manera suave, podemos tratar de cambiar de linea como hacíamos
+	# en el ejemplo 2. Esto implica sumar al gradiente (Ancho). Como
+	# Estamos utilizando un flip-flop ahora esto será (Ancho/2). Prueba
+	# a desactivar el gradiente para que compruebes que ocurre
 	li a4,2				# Constante para alteracion de color
 	div a5,a1,a4			# Fix para gradiente (Ancho/2)
 	
@@ -449,9 +594,13 @@ final:
 	ret
 
 # ---------------- SUBRUTINA: burn  ---------------------------------------
-	# Tag to bucle x, times the animation "burn.png"
-	# Arguments:
-	# a0: Counter
+# Subrutina que imprime las 7 imagenes de "burn" seguidas en bucle
+# para dar la sensacion de que esta animado. No se realiza P&P,
+# se realiza un escalado de imagen para aumentar sus dimensiones
+# y poder utilizar imagenes de menor peso en memoria. Más información
+# en Help (7) y Help (8)
+# Argumentos:
+# a0: Contador de bucle
 burn:
 	mv s0,a0		# Guardado de variables
 	li s2,200		# Coordenada x
@@ -534,7 +683,7 @@ bucle3:
 	li a5,4		# Escala
 	jal RESIZE_IMAGE
 	
-	addi s1,s1,1
+	addi s1,s1,1	# Aumentamos el contador
 	b bucle3
 	
 fin2:

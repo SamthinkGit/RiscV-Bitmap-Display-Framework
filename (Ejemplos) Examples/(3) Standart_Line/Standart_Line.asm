@@ -38,8 +38,10 @@
 		li s2, SCREEN_SIZE	# Ancho
 		li s3, 2			# 2
 		div s2,s2,s3		# Ancho/2
+		li t0,4			# Ancho de palabra (en bytes)
+		mul s2,s2,t0		# (Ancho/2)*4 -> distancia a bytes
 		
-		addi s1, s1, s2 	# Sumamos Ancho/2 (en bytes), centrar linea.
+		add s1, s1, s2 	# Sumamos Ancho/2 (en bytes), centrar linea.
 		
 		# Imprimir Linea Vertical
 		mv a0, s1		# Inicio

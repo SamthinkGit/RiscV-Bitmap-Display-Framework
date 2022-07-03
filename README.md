@@ -15,7 +15,7 @@ If you have any questions, please do not hesitate to contact us and we will do o
 
 Este repositorio contiene un framework para el Bitmap Display de RiscV. Incluye código fuente, así como documentación y ejemplos.
 El framework está diseñado para simplificar el proceso de uso del Bitmap Display en la plataforma RiscV (RAR). Incluye funciones para el dibujo básico
-de formas básocas e imágenes. Creemos que es importante que todos los usuarios puedan entender fácilmente este framework y la mejor manera de lograr
+de formas básicas e imágenes. Creemos que es importante que todos los usuarios puedan entender fácilmente este framework y la mejor manera de lograr
 esto es mediante la explicación en español. Es por esta razón que todas las explicaciones de los contenidos de este curso se encontrarán en la carpeta 
 "HELP" íntegramente en español. Esperamos que esto sea útil para aquellos que quieran aprender a usar esta herramienta 
 para sus propios proyectos.

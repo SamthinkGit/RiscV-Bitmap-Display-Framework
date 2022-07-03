@@ -1,3 +1,8 @@
+#---------------------------------------------------------------
+# NOTA: Subrutina diseñada para un ejemplo, puede haber sido
+# ligeramente alterada. Documentación reducida. Se recomienda
+# consultar/utilizar el fichero original adjuntado en "Utils"
+# -------------------------------------------------------------
 # Programa que realiza una traslación estática de una imagen dada hacia una direccion determinada. (Solo traslaciones ortogonales) Utilizable en display 512x512
 # Argumentos:
 # a0: Puntero a Imagen

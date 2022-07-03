@@ -1,10 +1,17 @@
-# Subrutina que crea una linea horizontal de un color especificado
+# ---------------- SUBRUTINA ---------------------------------------------
+# Nombre: H_LINE.s
+# Funcion: Subrutina que crea una linea horizontal de un color y longitud determinados
+# Requiere: 
+# - Colors.s (Opcional)
 # Argumentos:
 # a0 -> Inicio de Linea
 # a1 -> Distancia
 # a2 -> Color
+# Ayuda: Help(4)
+# -----------------------------------------------------------------------
 
-		.include "Colors.s"
+
+		.include "Colors.s" # Opcional, borrame si quieres utilizar tus propios colores
 		.globl H_LINE
 		
 H_LINE:

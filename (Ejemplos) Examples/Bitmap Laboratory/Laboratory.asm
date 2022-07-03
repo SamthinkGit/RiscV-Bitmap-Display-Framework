@@ -1,7 +1,7 @@
 # ---------------- MAIN ------------------------------------------------------------------------------------------------------------------------
-# Nombre: 
+# Nombre: Laboratory.asm
 # Funcion: Laboratorio de Pruebas con una simulacion con varias funciones activadas por defecto.
-# Constantes globales en Globals.s (CUIDADO,Solo modificar con conocimiento de su repercusión en el programa) 
+# Constantes globales en Globals.s (CUIDADO: Solo modificar con conocimiento de su repercusión en el programa) 
 # Requiere:
 # - Colors.s
 # - Globals.s
@@ -20,7 +20,7 @@
 # - RESIZE_PIXEL.s
 # - SHIFT.s
 # - V_LINE.s
-# Display: 512x512, 0x10040000 (pixel1x1)
+# Display: 512x512, 0x10040000 (pixel 1x1)
 # -------------------------------------------------------------------------------------------------------------------------------------
 
 			.include "Globals.s"

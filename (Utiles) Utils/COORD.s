@@ -1,12 +1,19 @@
-# Subrutina de devuelve un puntero asociado al pixel especificado en un display
+# ---------------- SUBRUTINA ---------------------------------------------
+# Nombre: COORD.s
+# Funcion: Subrutina de devuelve un puntero a memoria asociado 
+# a las coordenadas y display especificados.
+# Requiere: -
 # Argumentos:
-# a0: Coordenada x
-# a1: Coordenada y
-# a2: Ancho de pantalla
-# a3: Puntero de Display (generalmente 0x10010000)
+# - a0: Coordenada x
+# - a1: Coordenada y
+# - a2: Ancho de pantalla
+# - a3: Puntero de Display (generalmente 0x10010000)
 # Devuelve:
-# a0: Puntero
+# - a0: Puntero
+# Ayuda: Help(5)
+# -----------------------------------------------------------------------
 
+# ---------------- PROGRAMA PRINCIPAL  ------------------------------
 		.globl COORD
 		.text
 

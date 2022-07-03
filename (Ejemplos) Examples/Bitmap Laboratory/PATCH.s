@@ -1,3 +1,8 @@
+#---------------------------------------------------------------
+# NOTA: Subrutina diseñada para un ejemplo, puede haber sido
+# ligeramente alterada. Documentación reducida. Se recomienda
+# consultar/utilizar el fichero original adjuntado en "Utils"
+# -------------------------------------------------------------
 # Subrutina que parchea parte de una imagen si se ha perdido.
 # Argumentos:
 # a0: ID

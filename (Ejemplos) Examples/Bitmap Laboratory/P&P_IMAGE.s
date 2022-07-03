@@ -1,3 +1,8 @@
+#---------------------------------------------------------------
+# NOTA: Subrutina diseñada para un ejemplo, puede haber sido
+# ligeramente alterada. Documentación reducida. Se recomienda
+# consultar/utilizar el fichero original adjuntado en "Utils"
+# -------------------------------------------------------------
 # Subrutina que imprime una imagen en un bitmap display 512x512 parcheando los pixeles de la imagen de fondo.
 # Argumentos:
 # a0: Puntero a imagen

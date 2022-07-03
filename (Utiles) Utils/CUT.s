@@ -1,9 +1,17 @@
-# Subrutina que corta y pega una imagen dinámica a una posicion especificada
+# ---------------- SUBRUTINA ---------------------------------------------
+# Nombre: CUT.s
+# Funcion: Subrutina que corta y pega una imagen dinámica a una posicion especificada (Necesario ID de imagen)
+# Requiere:
+# - REMOVE.s
+# - IMAGE.s/ALPHA_IMAGE.s
 # Argumentos:
 # a0: ID
 # a1: Coordenada x
 # a2: Coordenada y
-		
+# Ayuda: Help(12)
+# -----------------------------------------------------------------------
+	
+# ---------------- PROGRAMA PRINCIPAL  ------------------------------
 		.globl CUT
 CUT:
 		.text

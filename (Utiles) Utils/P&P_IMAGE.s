@@ -1,4 +1,9 @@
-# Subrutina que imprime una imagen en un bitmap display 512x512 parcheando los pixeles de la imagen de fondo.
+# ---------------- SUBRUTINA ---------------------------------------------
+# Nombre: P&P_IMAGE.s
+# Funcion: Subrutina que imprime una imagen en un bitmap display 
+# 512x512 parcheando los pixeles de la imagen de fondo.
+# Requiere:
+# - COORD.s
 # Argumentos:
 # a0: Puntero a imagen
 # a1: Ancho
@@ -6,11 +11,23 @@
 # a3: Coordenada x
 # a4: Coordenada y
 # a5: ID (background)
- 
- 
- 		.eqv SIZE 512
- 		.eqv SCREEN 0x10040000
- 		.eqv PATCH_COLOR 0xff000000 # (Negro)
+# Ayuda: Help (14)
+# -----------------------------------------------------------------------
+
+ # -----------------------------------------------------------------------
+# 
+#     CUIDADO: Tratar de aplicar P&P sin estar superpuesta en su imagen de fondo
+#    puede dar lugar a impresiones inestables en las partículas alfa.
+#
+# ----------------------------------------------------------------------
+
+# ---------------- CONSTANTES  --------------------------------------
+
+ 		.eqv SIZE 512						 # Ancho del display
+ 		.eqv SCREEN 0x10040000	    		 # Base address del display
+ 		.eqv PATCH_COLOR 0xff000000		 # Color de partícula alfa. (No se imprimirá)
+ 		
+# ---------------- PROGRAMA PRINCIPAL  ------------------------------
 		.globl PRINT_PATCH
 		
 PRINT_PATCH:
@@ -26,12 +43,14 @@ PRINT_PATCH:
 		sw a3, 8(sp)
 		sw a4, 4(sp)
 		
+		# Obtención de puntero a inicio de imagen
 		mv a0,a3
 		mv a1,a4
 		li a2, SIZE
 		li a3, SCREEN
 		jal COORD
 		
+		# Inicialización de variables para impresión --------
 		mv t3, a0		# Puntero a Pixel (Inicial)
 		lw t4, 24(sp)	# Puntero a Imagen (Colores)
 		
@@ -47,11 +66,11 @@ PRINT_PATCH:
 		li a3,4			# Salto en bytes ((512-Ancho)*4)
 		mul a2,a2,a3		#
 		
-		# Borrado de datos inestables
+		# Borrado de datos inestables----------
 		li a6,0
 		li a7,0
 		
-		# ----- Calcular Puntero de Imagen
+		# ----- Calcular Puntero de Imagen (ID)-----------
 		lw a5, 12(sp)		# ID -> a5
 		lw t6, 8(sp)		# Coordenada X -> t6
 		lw t2, 4(sp)		# Coordenada Y -> t2
@@ -83,7 +102,7 @@ bucle:
 		beq a1,t1,final
 		
 		lw t5, 0(t4)		# Carga el color a t5
-		beq t5,t6,patch
+		beq t5,t6,patch	# Si coincide con la partícula alfa, parchea
 		sw t5, 0(t3)		# Guarda el color en el pixel
 continue:
 		addi t4,t4,4		# Aumenta el color

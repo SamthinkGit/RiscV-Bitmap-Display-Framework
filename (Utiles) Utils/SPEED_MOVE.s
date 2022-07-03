@@ -1,4 +1,10 @@
-# Subrutina que realiza una traslacion estática con un paso mayor a 1. (Solo traslaciones ortogonales) Utilizable en display 512x512
+# ---------------- SUBRUTINA ---------------------------------------------
+# Nombre: SPEED_MOVE.s
+# Funcion: Subrutina que realiza una traslacion estática con un paso mayor a 1. (Solo traslaciones ortogonales)
+# Requiere:
+# - MOVE.s
+# - IMAGE.s
+# - RECTANGLE.s
 # Argumentos:
 # a0: Puntero a Imagen
 # a1: Ancho
@@ -8,13 +14,25 @@
 # a5: Orientación
 # a6: Desplazamiento
 # a7: Paso
-		.globl SPEED_MOVE
-		.eqv SIZE 512
-		.eqv DISPLAY 0x10040000
+# Ayuda: Help (9), Help(10)
+# -----------------------------------------------------------------------
 
+# ---------------- CONSTANTES  --------------------------------------
+		.eqv SIZE 512				# Ancho de Display
+		.eqv DISPLAY 0x10040000	# Base Address Display
+
+# -----------------------------------------------------------------------
+# 
+#     CUIDADO: SPEED_MOVE tiene conflicto con PATCH_SPEED_MOVE, no
+#     utilizar las dos a la vez, o cambiar los tags de nombre global
+# ---------------------------------------------------------------------
+
+# ---------------- PROGRAMA PRINCIPAL  ------------------------------
+		.globl SPEED_MOVE		# <- Cambiame si es necesario
+		
 # ------------- COMPROBACIONES
-SPEED_MOVE:
-		.text
+SPEED_MOVE:					# <- Cambia esto tambien
+		.text	
 		# Inicio Subrutina
 		addi sp, sp, -64
 		sw ra, 60(sp)

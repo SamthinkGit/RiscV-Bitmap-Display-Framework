@@ -1,15 +1,25 @@
-# Subrutina que imprime una imagen en un bitmap display 512x512 (Variable con la constante SIZE)
-# Argumentos:
+# ---------------- SUBRUTINA ---------------------------------------------
+# Nombre: RESIZE_IMAGE.s
+# Funcion:  Subrutina que imprime una imagen en un bitmap display con dimensiones escaladas 
+# por un factor natural especificado
+# Requiere:
+# - COORD.s
+# - RESIZE_PIXEL.s
+#  Argumentos:
 # a0: Puntero a imagen
 # a1: Ancho
 # a2: Alto
 # a3: Coordenada x
 # a4: Coordenada y
 # a5: Escala
- 		
- 		.eqv SIZE 512
- 		.eqv SCREEN 0x10040000
- 		
+# Ayuda: Help(8)
+# -----------------------------------------------------------------------
+
+# ---------------- CONSTANTES  --------------------------------------
+ 		.eqv SIZE 512				# Ancho de Display
+ 		.eqv SCREEN 0x10040000	# Base Adress_Display
+ 
+ # ---------------- PROGRAMA PRINCIPAL  ------------------------------
 		.globl RESIZE_IMAGE
 		
 RESIZE_IMAGE:

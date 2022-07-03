@@ -1,3 +1,8 @@
+#---------------------------------------------------------------
+# NOTA: Subrutina diseñada para un ejemplo, puede haber sido
+# ligeramente alterada. Documentación reducida. Se recomienda
+# consultar/utilizar el fichero original adjuntado en "Utils"
+# -------------------------------------------------------------
 # Subrutina que crea una linea vertical de un color especificado
 # Argumentos:
 # a0 -> Inicio de Linea

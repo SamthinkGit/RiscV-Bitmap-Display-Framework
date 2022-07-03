@@ -1,15 +1,24 @@
-# Subrutina que parchea parte de una imagen si se ha perdido.
+# ---------------- SUBRUTINA ---------------------------------------------
+# Nombre: PATCH.s
+# Funcion: Subrutina que parchea parte de una imagen 
+# recuperando datos inestables o perdidos.
+# Requiere:
+# - IMAGE.s/ALPHA_IMAGE.s
 # Argumentos:
 # a0: ID
 # a1: Coordenada X (x)
 # a2: Coordenada Y (y)
 # a3: Ancho
 # a4: Alto
+# Ayuda: Help(14)
+# -----------------------------------------------------------------------
 
-
+# ---------------- CONSTANTES  --------------------------------------
+		.eqv SIZE 512					# Ancho del Display
+		.eqv DISPLAY 0x10040000		# Base address Display
+		
+# ---------------- PROGRAMA PRINCIPAL  -------------------------
 		.globl PATCH
-		.eqv SIZE 512
-		.eqv DISPLAY 0x10040000
 		
 PATCH:
 		.text

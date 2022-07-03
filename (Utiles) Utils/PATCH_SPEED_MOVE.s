@@ -1,4 +1,11 @@
-# Subrutina que realiza una traslacion estática con un paso mayor a 1. (Solo traslaciones ortogonales) Utilizable en display 512x512
+# ---------------- SUBRUTINA ---------------------------------------------
+# Nombre: PATCH_SPEED_MOVE.s
+# Funcion: Subrutina que realiza una traslacion estática con un paso mayor a 1. Eliminado de trails utilizando P&P.
+# (Solo traslaciones ortogonales) Utilizable en display 512x512
+# Requiere:
+# - PATCH.s
+# - COORD.s
+# - P&P_IMAGE.s
 # Argumentos:
 # a0: Puntero a Imagen
 # a1: Ancho
@@ -8,10 +15,25 @@
 # a5: Orientación
 # a6: Desplazamiento
 # a7: Paso
-		.globl SPEED_MOVE
-		.eqv SIZE 512
-		.eqv DISPLAY 0x10040000
+# Ayuda: Help(15)
+# -----------------------------------------------------------------------
 
+# -----------------------------------------------------------------------
+# 
+#     CUIDADO: Parcheo inestable en zonas no superpuestas con la imagen de fondo
+#     Nota: Fondo con ID en tag "background" obligatorio
+#
+# ---------------------------------------------------------------------
+
+# ---------------- CONSTANTES  --------------------------------------
+
+		.eqv SIZE 512				# Ancho de Display
+		.eqv DISPLAY 0x10040000	# Base Address Display
+		
+# ---------------- PROGRAMA PRINCIPAL  ------------------------------
+
+		.globl SPEED_MOVE
+		
 # ------------- COMPROBACIONES
 SPEED_MOVE:
 		.text

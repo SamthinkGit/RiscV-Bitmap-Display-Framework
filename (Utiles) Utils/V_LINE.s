@@ -1,11 +1,17 @@
-# Subrutina que crea una linea vertical de un color especificado
+# ---------------- SUBRUTINA ---------------------------------------------
+# Nombre: V_LINE
+# Funcion: Subrutina que crea una linea vertical de un color especificado en el display
+# Requiere:
+# - Colors.s (Opcional)
 # Argumentos:
-# a0 -> Inicio de Linea
+# a0 -> Inicio de Linea (Puntero a Display)
 # a1 -> Distancia
 # a2 -> Color
 # a3 -> Tamaño de pantalla
-
-		.include "Colors.s"
+# Ayuda: Help(4)
+# -----------------------------------------------------------------------
+# ---------------- PROGRAMA PRINCIPAL  ------------------------------
+		.include "Colors.s" # Opcional, borrame si quieres usar tus propios colores
 		.globl V_LINE
 		
 V_LINE:

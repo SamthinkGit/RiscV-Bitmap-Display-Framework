@@ -41,9 +41,10 @@ Directorios:
 - Examples: Contiene una serie de ejemplos de código que ponen en práctica los conceptos explicados en la carpeta HELP. Los ejemplos están ordenados 
   por tema, y cada uno contiene un archivo principal (.asm) y varios archivos de subrutinas (.s) necesarios para ejecutar el programa. Se recomienda 
   probar los ejemplos en el orden especificado, y jugar con los parámetros de las subrutinas para ver los cambios que pueden suceder. (Puedes activar
-  la opción de "Assemble all files in directory" para abrir con el Rars solo el fichero ".asm"). No se recomienda cambiar las subrutinas '.s' incluidas
-  en los ejemplos directamente por los de la carpteta "Utils", en algunos ejemplos los ficheros contienen ligeras modificaciones en constantes globales 
-  para el correcto funcionamiento del programa principal.
+  la opción de "Assemble all files in directory" para abrir con el Rars solo el fichero ".asm"). 
+
+  IMPORTANTE: NO se recomienda cambiar las subrutinas '.s' incluidas en los ejemplos directamente por los de la carpteta "Utils", en algunos ejemplos los
+  ficheros contienen ligeras modificaciones en constantes globales para el correcto funcionamiento del programa principal.
   
   Dentro de los ejemplos encontraras constantes con la marca de laboratorio (L), estas se tratan de variables que se recomienda modificar con el fin de
   entender más profundamente lo que sucede internamente en cada programa.

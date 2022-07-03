@@ -1,3 +1,8 @@
+#---------------------------------------------------------------
+# NOTA: Subrutina diseñada para un ejemplo, puede haber sido
+# ligeramente alterada. Documentación reducida. Se recomienda
+# consultar/utilizar el fichero original adjuntado en "Utils"
+# -------------------------------------------------------------
 # Subrutina que corta y pega una imagen dinámica a una posicion especificada
 # Argumentos:
 # a0: ID

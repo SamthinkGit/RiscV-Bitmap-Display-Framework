@@ -1,10 +1,17 @@
-# Subrutina que desplaza una imagen dinámica en la direccion definida
+# ---------------- SUBRUTINA ---------------------------------------------
+# Nombre: SHIFT.s
+# Funcion: Subrutina que desplaza una imagen dinámica en la direccion definida
+# Requiere:
+# - SPEED_MOVE/PATCH_SPEED_MOVE
 # Argumentos:
-# a0: Direccion de Imagen
+# a0: Direccion de Imagen (ID)
 # a1: Direccion
 # a2: Distancia
 # a3: Velocidad
+# Ayuda: Help(9), Help(15)
+# -----------------------------------------------------------------------
 
+# ---------------- PROGRAMA PRINCIPAL  ------------------------------
 		.globl SHIFT
 		
 SHIFT:

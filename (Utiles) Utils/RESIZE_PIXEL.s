@@ -1,15 +1,20 @@
-# Subrutina que diseña un rectangulo dadas sus coordenadas (512x512)
-# Argumentos
+# ---------------- SUBRUTINA ---------------------------------------------
+# Nombre: RESIZE_PIXEL.s
+# Funcion: Subrutina que diseña un cuadrado nxn dadas sus coordenadas y color
+# Requiere: -
+# Argumentos:
 # a0: Puntero inicial
 # a1: Escala
 # a2: Puntero Color
+# Ayuda: Help(8)
+# -----------------------------------------------------------------------
 
+# ---------------- CONSTANTES  --------------------------------------
+	.eqv SCREEN 0x10040000	# Base Address Display
+	.eqv SIZE 512				# Ancho de Display
 
-
-	.eqv SCREEN 0x10040000
-	.eqv SIZE 512
-	.globl RESIZE_PIXEL
-		
+# ---------------- PROGRAMA PRINCIPAL  ------------------------------
+	.globl RESIZE_PIXEL		
 RESIZE_PIXEL:
 
 	li t0, 0 # Contador

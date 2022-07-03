@@ -1,9 +1,19 @@
-# Subrutina que elimina una imagen dinámica
+# ---------------- SUBRUTINA ---------------------------------------------
+# Nombre: REMOVE.s
+# Funcion: Subrutina que elimina una imagen dinámica del display
+# Requiere: 
+# RECTANGLE.s
 # Argumentos:
-# a0: Direccion de imagen
+# a0: ID de imagen
+# Ayuda: Help(12)
+# -----------------------------------------------------------------------
 
-		.globl REMOVE
-			.eqv REMOVE_COLOR 0 # (Negro)
+# ---------------- CONSTANTES  --------------------------------------
+			.eqv REMOVE_COLOR 0		# Color de Eliminado
+			
+# ---------------- PROGRAMA PRINCIPAL  ------------------------------
+			.globl REMOVE
+
 REMOVE:
 
 		.text

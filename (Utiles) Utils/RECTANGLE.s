@@ -1,10 +1,17 @@
-# Subrutina que diseña un rectangulo dadas sus coordenadas (512x512)
+# ---------------- SUBRUTINA ---------------------------------------------
+# Nombre: RECTANGLE.s
+# Funcion: Subrutina que diseña un rectangulo en el display dadas sus coordenadas
+# Requiere:
+# - COORD.s
+# - H_LINE.s
 # Argumentos
 # a0: Coordenada X
 # a1: Coordenada Y
 # a2: Ancho
 # a3: Largo
 # a4: Color
+# Ayuda: Help(6)
+# -----------------------------------------------------------------------
 
 # Esquema de Pila:
 # 28 -> Registro ra
@@ -16,8 +23,12 @@
 # 4 Puntero (x,y) Inicial
 # 0 Puntero (x,y) última fila
 
-	.eqv SCREEN 0x10010000
-	.eqv BYTE_SIZE 512  # (512px*4)
+# ---------------- CONSTANTES  ------------------------------------
+--
+	.eqv SCREEN 0x10040000	# Base Address del del display
+	.eqv BYTE_SIZE 512  		# Ancho de Display
+	
+# ---------------- PROGRAMA PRINCIPAL  ------------------------------
 	.globl RECTANGLE
 		
 RECTANGLE:

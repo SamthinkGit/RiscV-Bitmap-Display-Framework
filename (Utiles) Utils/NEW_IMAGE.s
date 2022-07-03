@@ -1,24 +1,47 @@
-# Subrutina que guarda en memoria las propiedades de un conjunto de pixeles como objeto dinámico.
+# ---------------- SUBRUTINA ---------------------------------------------
+# Nombre: NEW_IMAGE.s
+# Funcion: Subrutina que guarda en memoria las propiedades de un 
+# conjunto de pixeles como objeto dinámico y le asigna un ID.
+# Requiere:
+# - COORD.s
 # Argumentos:
 # a0: Puntero a Memoria
 # a1: Coordenada X inicial
 # a2: Coordendad Y inicial
 # a3: Coordenada X final
 # a4: Coordenada Y final
-#
-# Espacios de Almacenamiento:
+# Ayuda: Help(11)
+# -----------------------------------------------------------------------
+
+# --------------- ESPACIOS DE ALMACENAMIENTO (en Bytes) -----------------
 # 0-3: Puntero a Inicio
 # 4-7: Puntero a Final
 # 8-9: Coordenada X inicial
 # 10-11: Coordenada Y inicial
 # 12-13: Ancho
 # 14-15: Alto
-# 16->: Mapa de bytes
+# 16->: Mapa de bytes (bitmap)
+# ------------------------------------------------------------------------------------------
+
+
+# -----------------------------------------------------------------------
+# 
+#     CUIDADO: NEW_IMAGE necesita copiar en la memoria el bitmap
+#    de la imagen. Esto puede ser muy pesado con imagenes de más de 200x200 pixeles
+#    y empezar a solaparse con otros espacios de memoria. No se recomienda asignar un ID
+#    a imagenes que no utilicen transformaciones dinámicas, y si se hace, utilizar el mismo ID
+#   para distintos objetos una vez terminadas sus transformaciones.
+#
+# ----------------------------------------------------------------------
+
+# ---------------- CONSTANTES  --------------------------------------
+
+		.eqv SIZE 512				# Ancho de Display
+		.eqv DISPLAY 0x10040000	# Base Address del Display
+
+# ---------------- PROGRAMA PRINCIPAL  ------------------------------
 
 		.globl NEW_IMAGE
-		.eqv SIZE 512
-		.eqv DISPLAY 0x10040000
-
 NEW_IMAGE:
 		.text
 		#-- Comienzo subruina

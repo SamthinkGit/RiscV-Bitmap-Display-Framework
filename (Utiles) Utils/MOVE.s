@@ -1,4 +1,12 @@
-# Programa que realiza una traslación estática de una imagen dada hacia una direccion determinada. (Solo traslaciones ortogonales) Utilizable en display 512x512
+# ---------------- SUBRUTINA ---------------------------------------------
+# Nombre: MOVE.s 
+# Funcion: Programa que realiza una traslación estática de una imagen dada 
+# hacia una direccion determinada. (Solo traslaciones ortogonales)
+# Requiere: 
+# - COORD.s
+# - IMAGE.s
+# - H_LINE.s
+# - V_LINE.s
 # Argumentos:
 # a0: Puntero a Imagen
 # a1: Ancho
@@ -11,11 +19,17 @@
 # - 2: Izquierda
 # - 3: Arriba
 # a6: Desplazamiento
-		.globl MOVE
-		.eqv SIZE 512
-		.eqv DISPLAY 0x10040000
-		.eqv TRAIL_COLOR 0
+# Ayuda: Help(9)
+# -----------------------------------------------------------------------
 
+# ---------------- CONSTANTES  ---------------------------------------
+		.eqv SIZE 512				# Ancho de Display
+		.eqv DISPLAY 0x10040000	# Puntero a Display
+		.eqv TRAIL_COLOR 0		# Color de parcheo de movimiento  (sin P&P) 
+		
+# ---------------- PROGRAMA PRINCIPAL  -----------------------------
+
+		.globl MOVE
 MOVE:
 		.text
 		# Inicio Subrutina

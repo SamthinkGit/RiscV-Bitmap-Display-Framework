@@ -1,3 +1,8 @@
+#---------------------------------------------------------------
+# NOTA: Subrutina diseñada para un ejemplo, puede haber sido
+# ligeramente alterada. Documentación reducida. Se recomienda
+# consultar/utilizar el fichero original adjuntado en "Utils"
+# -------------------------------------------------------------
 # Fichero que almacena palabras con combinaciones de colores
 # utilizar solo para mostrar en el Bitmap Display, agregar al programa deseado
 # con la funcion ".include"
